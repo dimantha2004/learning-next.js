@@ -12,7 +12,7 @@ import { Search, Crown, Star } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
-  const { posts, searchPosts, getAccessiblePosts } = usePosts();
+  const { posts } = usePosts();
   const { user } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredPosts, setFilteredPosts] = useState(posts);
@@ -22,16 +22,19 @@ export default function Home() {
   const isPremium = (user as any)?.is_premium;
 
   useEffect(() => {
-    let result = searchQuery ? searchPosts(searchQuery) : getAccessiblePosts();
-    
+    let result = searchQuery
+      ? posts.filter(post =>
+          post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          post.content.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      : posts;
     if (filter === 'free') {
       result = result.filter(post => post.visibility === 'free');
     } else if (filter === 'premium') {
       result = result.filter(post => post.visibility === 'premium');
     }
-    
     setFilteredPosts(result);
-  }, [posts, searchQuery, filter, searchPosts, getAccessiblePosts]);
+  }, [posts, searchQuery, filter]);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -45,7 +48,7 @@ export default function Home() {
       <section className="bg-gradient-to-br from-blue-50 to-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            Welcome to <span className="text-blue-600">BlogPro</span>
+            Welcome to <span className="text-blue-600">Bloggers hub</span>
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
             Discover amazing content from our community of writers. Join our premium membership for exclusive access to advanced articles and insights.

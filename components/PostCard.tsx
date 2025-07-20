@@ -23,6 +23,8 @@ export default function PostCard({ post, showActions = false }: PostCardProps) {
   const hasActiveSubscription = user?.subscription?.status === 'active';
   const canAccessPost = post.visibility === 'free' || hasActiveSubscription;
   const isAuthor = user?.id === post.authorId;
+  const isPremiumUser = user?.is_premium;
+  const isPremiumPost = post.visibility === 'premium';
 
   const getExcerpt = (content: string, maxLength: number = 150) => {
     // Remove markdown formatting for excerpt
@@ -43,7 +45,7 @@ export default function PostCard({ post, showActions = false }: PostCardProps) {
             className="object-cover group-hover:scale-105 transition-transform duration-300"
           />
           <div className="absolute top-4 right-4">
-            {post.visibility === 'premium' && (
+            {isPremiumPost && (
               <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900">
                 <Crown className="w-3 h-3 mr-1" />
                 Premium
@@ -73,31 +75,39 @@ export default function PostCard({ post, showActions = false }: PostCardProps) {
           {getExcerpt(post.content)}
         </p>
         
-        {!canAccessPost && (
+        {isPremiumPost && !isPremiumUser && (
           <div className="flex items-center space-x-2 text-amber-600 bg-amber-50 p-3 rounded-lg mb-4">
             <Lock className="w-4 h-4" />
-            <span className="text-sm font-medium">Premium content - upgrade to access</span>
+            <span className="text-sm font-medium">Premium content - upgrade to access full article</span>
           </div>
         )}
       </CardContent>
       
       <CardFooter className="px-6 pb-6 pt-0">
         <div className="flex items-center justify-between w-full">
-          {canAccessPost ? (
-            <Link href={`/posts/${post.id}`}>
+          {isPremiumPost ? (
+            isPremiumUser ? (
+              <Link href={`/posts/${post.id}/view`}>
+                <Button variant="default" className="flex items-center space-x-2">
+                  <span>Read More</span>
+                </Button>
+              </Link>
+            ) : (
+              <Button
+                variant="outline"
+                className="flex items-center space-x-2"
+                onClick={() => router.push('/subscription')}
+              >
+                <Lock className="w-4 h-4" />
+                <span>Preview</span>
+              </Button>
+            )
+          ) : (
+            <Link href={`/posts/${post.id}/view`}>
               <Button variant="default" className="flex items-center space-x-2">
                 <span>Read More</span>
               </Button>
             </Link>
-          ) : (
-            <Button
-              variant="outline"
-              className="flex items-center space-x-2"
-              onClick={() => router.push('/subscription')}
-            >
-              <Lock className="w-4 h-4" />
-              <span>Preview</span>
-            </Button>
           )}
           {showActions && isAuthor && (
             <div className="flex items-center space-x-2">

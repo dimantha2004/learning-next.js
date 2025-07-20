@@ -63,7 +63,7 @@ export default function SubscriptionPage() {
                     <div>
                       <h3 className="font-semibold text-blue-900">Current Plan</h3>
                       <p className="text-blue-700">
-                        {hasActiveSubscription ? user.subscription?.product_name || 'Premium Member' : 'Free Member'}
+                        {hasActiveSubscription || isPremium ? user.subscription?.product_name || 'Premium Member' : 'Free Member'}
                       </p>
                       {user.subscription?.current_period_end && (
                         <p className="text-sm text-blue-600">

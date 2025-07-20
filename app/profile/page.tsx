@@ -178,6 +178,14 @@ export default function ProfilePage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
+                  {isPremium && orders.length > 0 && (
+                    <div className="flex items-center mb-4">
+                      <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900">
+                        <Crown className="w-4 h-4 mr-1" />
+                        Premium Member
+                      </Badge>
+                    </div>
+                  )}
                   {loadingOrders ? (
                     <div className="text-center py-8">
                       <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600 mx-auto mb-2"></div>
