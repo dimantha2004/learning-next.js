@@ -15,6 +15,7 @@ export interface Post {
   published: boolean;
   createdAt: string;
   updatedAt: string;
+  authorAvatarUrl?: string; // Optional avatar URL for author
 }
 
 interface PostContextType {
