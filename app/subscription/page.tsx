@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
 import { stripeProducts } from '@/src/stripe-config';
@@ -14,6 +14,11 @@ import { toast } from 'sonner';
 export default function SubscriptionPage() {
   const { user, refreshUser } = useAuth();
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    // Always refresh user on mount to get latest subscription status
+    refreshUser && refreshUser();
+  }, [refreshUser]);
 
   const isPremium = (user as any)?.is_premium;
   const hasActiveSubscription = user?.subscription?.status === 'active';
