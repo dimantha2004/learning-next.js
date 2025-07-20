@@ -16,6 +16,21 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Save, Crown } from 'lucide-react';
 import Link from 'next/link';
 import { toast } from 'sonner';
+import { createClient } from '@supabase/supabase-js';
+
+export async function generateStaticParams() {
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+  const { data: posts, error } = await supabase
+    .from('posts')
+    .select('id');
+  if (error || !posts) {
+    throw new Error('Failed to fetch post IDs from Supabase.');
+  }
+  return posts.map((post: { id: string }) => ({ id: post.id }));
+}
 
 export default function EditPostPage() {
   const { user, isLoading } = useAuth();

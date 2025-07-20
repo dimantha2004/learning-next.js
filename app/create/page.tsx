@@ -29,6 +29,7 @@ export default function CreatePostPage() {
   const [saving, setSaving] = useState(false);
 
   const hasActiveSubscription = user?.subscription?.status === 'active';
+  const isPremiumUser = user?.is_premium;
 
   useEffect(() => {
     if (!isLoading && !user) {
@@ -64,6 +65,12 @@ export default function CreatePostPage() {
       return;
     }
 
+    // Enforce: only premium users can post premium posts
+    if (visibility === 'premium' && !isPremiumUser) {
+      toast.error('Only premium members can create premium posts');
+      return;
+    }
+
     setSaving(true);
     
     try {
@@ -71,7 +78,7 @@ export default function CreatePostPage() {
         title: title.trim(),
         content: content.trim(),
         coverImage: coverImage.trim() || undefined,
-        visibility,
+        visibility: isPremiumUser ? visibility : 'free',
         authorId: user.id,
         authorName: user.user_metadata?.full_name || user.email || 'Anonymous',
         published: true
@@ -134,10 +141,13 @@ export default function CreatePostPage() {
                             <Badge variant="secondary">Public</Badge>
                           </div>
                         </SelectItem>
-                        <SelectItem value="premium">
+                        <SelectItem value="premium" disabled={!isPremiumUser}>
                           <div className="flex items-center space-x-2">
                             <Crown className="w-4 h-4" />
                             <span>Premium Post</span>
+                            {!isPremiumUser && (
+                              <Badge variant="outline" className="text-xs">Premium Only</Badge>
+                            )}
                           </div>
                         </SelectItem>
                       </SelectContent>
