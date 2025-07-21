@@ -45,30 +45,28 @@ export default function DashboardPage() {
   const isPremium = (user as any)?.is_premium;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-[#61dbf2]/20 via-white to-[#61dbf2]/40">
       <Header />
       
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-12">
         {/* Welcome Section */}
         <div className="mb-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2 tracking-tight drop-shadow-lg">
                 Welcome back, {user.user_metadata?.full_name || user.email}!
               </h1>
-              <p className="text-gray-600">
-                Manage your posts and track your writing progress
-              </p>
+              <p className="text-gray-600 text-lg">Manage your posts and track your writing progress</p>
             </div>
             <div className="flex items-center space-x-4">
               {isPremium && (
-                <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900">
+                <Badge className="bg-gradient-to-r from-cyan-300 to-cyan-400 text-cyan-900 shadow-md">
                   <Crown className="w-4 h-4 mr-1" />
                   Premium Member
                 </Badge>
               )}
               <Link href="/create">
-                <Button className="flex items-center space-x-2">
+                <Button className="flex items-center space-x-2 rounded-xl bg-gradient-to-r from-[#61dbf2] to-cyan-600 hover:from-cyan-600 hover:to-cyan-800 shadow-lg transition-all duration-200 transform hover:-translate-y-1 hover:scale-105 focus:ring-4 focus:ring-[#61dbf2]/30">
                   <Plus className="w-4 h-4" />
                   <span>New Post</span>
                 </Button>
@@ -79,10 +77,10 @@ export default function DashboardPage() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card>
+          <Card className="shadow-xl rounded-2xl bg-white/80 backdrop-blur-md border-0 transition-all duration-300 hover:shadow-2xl">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Total Posts</CardTitle>
-              <FileText className="h-4 w-4 text-muted-foreground" />
+              <FileText className="h-4 w-4 text-[#61dbf2]" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{totalPosts}</div>
@@ -92,10 +90,10 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="shadow-xl rounded-2xl bg-white/80 backdrop-blur-md border-0 transition-all duration-300 hover:shadow-2xl">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Free Posts</CardTitle>
-              <TrendingUp className="h-4 w-4 text-muted-foreground" />
+              <TrendingUp className="h-4 w-4 text-[#61dbf2]" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{freePosts}</div>
@@ -105,10 +103,10 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="shadow-xl rounded-2xl bg-white/80 backdrop-blur-md border-0 transition-all duration-300 hover:shadow-2xl">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Premium Posts</CardTitle>
-              <Crown className="h-4 w-4 text-muted-foreground" />
+              <Crown className="h-4 w-4 text-[#61dbf2]" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{premiumPosts}</div>
@@ -118,10 +116,10 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="shadow-xl rounded-2xl bg-white/80 backdrop-blur-md border-0 transition-all duration-300 hover:shadow-2xl">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Account Status</CardTitle>
-              <Crown className="h-4 w-4 text-muted-foreground" />
+              <Crown className="h-4 w-4 text-[#61dbf2]" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
@@ -140,7 +138,7 @@ export default function DashboardPage() {
             <h2 className="text-2xl font-bold text-gray-900">Your Posts</h2>
             {totalPosts > 0 && (
               <Link href="/create">
-                <Button variant="outline" className="flex items-center space-x-2">
+                <Button variant="outline" className="flex items-center space-x-2 rounded-xl border-[#61dbf2] text-[#61dbf2] hover:bg-cyan-50 shadow-md transition-all duration-200">
                   <Plus className="w-4 h-4" />
                   <span>Add New</span>
                 </Button>
@@ -149,10 +147,10 @@ export default function DashboardPage() {
           </div>
 
           {totalPosts === 0 ? (
-            <Card>
+            <Card className="shadow-xl rounded-2xl bg-white/80 backdrop-blur-md border-0 transition-all duration-300 hover:shadow-2xl">
               <CardContent className="pt-6">
                 <div className="text-center py-12">
-                  <FileText className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                  <FileText className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
                     No posts yet
                   </h3>
@@ -160,7 +158,7 @@ export default function DashboardPage() {
                     Start sharing your thoughts and ideas with the world
                   </p>
                   <Link href="/create">
-                    <Button className="flex items-center space-x-2">
+                    <Button className="flex items-center space-x-2 rounded-xl bg-gradient-to-r from-[#61dbf2] to-cyan-600 hover:from-cyan-600 hover:to-cyan-800 shadow-lg transition-all duration-200 transform hover:-translate-y-1 hover:scale-105 focus:ring-4 focus:ring-[#61dbf2]/30">
                       <Plus className="w-4 h-4" />
                       <span>Create Your First Post</span>
                     </Button>
@@ -169,9 +167,11 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {userPosts.map((post) => (
-                <PostCard key={post.id} post={post} showActions={true} />
+                <div className="transition-all duration-200 hover:scale-[1.025] hover:shadow-2xl rounded-2xl">
+                  <PostCard key={post.id} post={post} showActions={true} />
+                </div>
               ))}
             </div>
           )}
@@ -179,18 +179,18 @@ export default function DashboardPage() {
 
         {/* Premium Message for Premium Users */}
         {isPremium && (
-          <Card className="bg-gradient-to-r from-yellow-100 to-yellow-200 border-yellow-300">
+          <Card className="bg-gradient-to-r from-cyan-100 to-cyan-200 border-cyan-300 shadow-xl rounded-2xl backdrop-blur-md border-0 transition-all duration-300 hover:shadow-2xl">
             <CardHeader>
-              <CardTitle className="flex items-center space-x-2 text-yellow-800">
+              <CardTitle className="flex items-center space-x-2 text-cyan-800">
                 <Crown className="w-5 h-5" />
                 <span>Premium Member</span>
               </CardTitle>
-              <CardDescription className="text-yellow-700">
+              <CardDescription className="text-cyan-700">
                 You have full access to all premium features and content.
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900">
+              <Badge className="bg-gradient-to-r from-cyan-300 to-cyan-400 text-cyan-900 shadow-md">
                 <Crown className="w-4 h-4 mr-1" />
                 Premium Active
               </Badge>
