@@ -156,12 +156,7 @@ export default function ProfilePage() {
                         <Crown className="w-4 h-4 mr-1" />
                         Premium Member
                       </Badge>
-                    ) : (
-                      <Button onClick={handleBecomePremium} className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900">
-                        <Crown className="w-4 h-4 mr-2" />
-                        Become Premium (Demo)
-                      </Button>
-                    )}
+                    ) : null}
                   </div>
                 </CardContent>
               </Card>

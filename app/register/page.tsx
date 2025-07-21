@@ -50,26 +50,26 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-white to-blue-200 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
           <Link href="/" className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors mb-4">
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Home</span>
           </Link>
-          <h1 className="text-3xl font-bold text-gray-900">Get Started</h1>
-          <p className="text-gray-600 mt-2">Create your account to start blogging</p>
+          <h1 className="text-4xl font-extrabold text-gray-900 mb-2 tracking-tight">Get Started</h1>
+          <p className="text-lg text-gray-600">Create your account to start blogging</p>
         </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Create Account</CardTitle>
-            <CardDescription>
+        <Card className="shadow-xl rounded-2xl border-0 bg-white/90 backdrop-blur-md">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-2xl font-bold text-blue-900">Create Account</CardTitle>
+            <CardDescription className="text-gray-500">
               Join our community of writers and readers
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-6">
               {error && (
                 <Alert variant="destructive">
                   <AlertDescription>{error}</AlertDescription>
@@ -77,7 +77,7 @@ export default function RegisterPage() {
               )}
 
               <div className="space-y-2">
-                <Label htmlFor="name">Full Name</Label>
+                <Label htmlFor="name" className="text-base font-medium">Full Name</Label>
                 <Input
                   id="name"
                   type="text"
@@ -85,11 +85,12 @@ export default function RegisterPage() {
                   onChange={(e) => setName(e.target.value)}
                   placeholder="John Doe"
                   required
+                  className="rounded-lg border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base px-4 py-2"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email" className="text-base font-medium">Email</Label>
                 <Input
                   id="email"
                   type="email"
@@ -97,11 +98,12 @@ export default function RegisterPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="your@email.com"
                   required
+                  className="rounded-lg border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base px-4 py-2"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="text-base font-medium">Password</Label>
                 <Input
                   id="password"
                   type="password"
@@ -109,11 +111,12 @@ export default function RegisterPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   required
+                  className="rounded-lg border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base px-4 py-2"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword">Confirm Password</Label>
+                <Label htmlFor="confirmPassword" className="text-base font-medium">Confirm Password</Label>
                 <Input
                   id="confirmPassword"
                   type="password"
@@ -121,10 +124,11 @@ export default function RegisterPage() {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="••••••••"
                   required
+                  className="rounded-lg border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base px-4 py-2"
                 />
               </div>
 
-              <Button type="submit" className="w-full" disabled={isLoading}>
+              <Button type="submit" className="w-full py-3 text-lg font-semibold rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-md transition-all duration-200" disabled={isLoading}>
                 {isLoading ? (
                   <div className="flex items-center space-x-2">
                     <Loader2 className="w-4 h-4 animate-spin" />
@@ -136,10 +140,10 @@ export default function RegisterPage() {
               </Button>
             </form>
 
-            <div className="mt-6 text-center">
-              <p className="text-sm text-gray-600">
+            <div className="mt-8 text-center">
+              <p className="text-base text-gray-600">
                 Already have an account?{' '}
-                <Link href="/login" className="text-blue-600 hover:text-blue-700 font-medium">
+                <Link href="/login" className="text-blue-600 hover:text-blue-700 font-semibold underline underline-offset-2">
                   Sign in
                 </Link>
               </p>

@@ -94,119 +94,114 @@ export default function CreatePostPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
-      
-      <main className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto">
-          {/* Header */}
-          <div className="mb-8">
-            <Link href="/dashboard" className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors mb-4">
-              <ArrowLeft className="w-4 h-4" />
-              <span>Back to Dashboard</span>
-            </Link>
-            <h1 className="text-3xl font-bold text-gray-900">Create New Post</h1>
-            <p className="text-gray-600 mt-2">Share your thoughts with the community</p>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Post Settings */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Post Settings</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="title">Title *</Label>
-                    <Input
-                      id="title"
-                      value={title}
-                      onChange={(e) => setTitle(e.target.value)}
-                      placeholder="Enter your post title..."
-                      required
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="visibility">Visibility</Label>
-                    <Select value={visibility} onValueChange={(value: 'free' | 'premium') => setVisibility(value)}>
-                      <SelectTrigger id="visibility">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="free">
-                          <div className="flex items-center space-x-2">
-                            <span>Free Post</span>
-                            <Badge variant="secondary">Public</Badge>
-                          </div>
-                        </SelectItem>
-                        <SelectItem value="premium" disabled={!isPremiumUser}>
-                          <div className="flex items-center space-x-2">
-                            <Crown className="w-4 h-4" />
-                            <span>Premium Post</span>
-                            {!isPremiumUser && (
-                              <Badge variant="outline" className="text-xs">Premium Only</Badge>
-                            )}
-                          </div>
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                    {visibility === 'premium' && (
-                      <p className="text-sm text-amber-600">
-                        This post will only be visible to premium subscribers
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                <ImageUpload
-                  onImageUploaded={setCoverImage}
-                  currentImage={coverImage}
-                  onImageRemoved={() => setCoverImage('')}
-                />
-              </CardContent>
-            </Card>
-
-            {/* Content Editor */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Post Content</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <MarkdownEditor
-                  value={content}
-                  onChange={setContent}
-                  placeholder="Write your post content here... You can use Markdown formatting!"
-                />
-                <div className="mt-4 text-sm text-gray-500">
-                  <p>Tip: You can use Markdown formatting like **bold**, *italic*, # headings, and more!</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Submit Button */}
-            <div className="flex items-center justify-end space-x-4">
-              <Link href="/dashboard">
-                <Button variant="outline">Cancel</Button>
-              </Link>
-              <Button type="submit" disabled={saving} className="flex items-center space-x-2">
-                {saving ? (
-                  <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                    <span>Publishing...</span>
-                  </>
-                ) : (
-                  <>
-                    <Save className="w-4 h-4" />
-                    <span>Publish Post</span>
-                  </>
-                )}
-              </Button>
-            </div>
-          </form>
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-white to-blue-200 flex items-center justify-center p-4">
+      <div className="w-full max-w-2xl">
+        <div className="mb-8 text-center">
+          <Link href="/dashboard" className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors mb-4">
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Dashboard</span>
+          </Link>
+          <h1 className="text-4xl font-extrabold text-gray-900 mb-2 tracking-tight">Create New Post</h1>
+          <p className="text-lg text-gray-600">Share your thoughts with the community</p>
         </div>
-      </main>
+
+        <form onSubmit={handleSubmit} className="space-y-8">
+          {/* Post Settings */}
+          <Card className="shadow-xl rounded-2xl border-0 bg-white/90 backdrop-blur-md">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-2xl font-bold text-blue-900">Post Settings</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="title" className="text-base font-medium">Title *</Label>
+                  <Input
+                    id="title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="Enter your post title..."
+                    required
+                    className="rounded-lg border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base px-4 py-2"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="visibility" className="text-base font-medium">Visibility</Label>
+                  <Select value={visibility} onValueChange={(value: 'free' | 'premium') => setVisibility(value)}>
+                    <SelectTrigger id="visibility">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="free">
+                        <div className="flex items-center space-x-2">
+                          <span>Free Post</span>
+                          <Badge variant="secondary">Public</Badge>
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="premium" disabled={!isPremiumUser}>
+                        <div className="flex items-center space-x-2">
+                          <Crown className="w-4 h-4" />
+                          <span>Premium Post</span>
+                          {!isPremiumUser && (
+                            <Badge variant="outline" className="text-xs">Premium Only</Badge>
+                          )}
+                        </div>
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                  {visibility === 'premium' && (
+                    <p className="text-sm text-amber-600">
+                      This post will only be visible to premium subscribers
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <ImageUpload
+                onImageUploaded={setCoverImage}
+                currentImage={coverImage}
+                onImageRemoved={() => setCoverImage('')}
+              />
+            </CardContent>
+          </Card>
+
+          {/* Content Editor */}
+          <Card className="shadow-xl rounded-2xl border-0 bg-white/90 backdrop-blur-md">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-2xl font-bold text-blue-900">Post Content</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <MarkdownEditor
+                value={content}
+                onChange={setContent}
+                placeholder="Write your post content here... You can use Markdown formatting!"
+              />
+              <div className="mt-4 text-sm text-gray-500">
+                <p>Tip: You can use Markdown formatting like **bold**, *italic*, # headings, and more!</p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Submit Button */}
+          <div className="flex items-center justify-end space-x-4">
+            <Link href="/dashboard">
+              <Button variant="outline" className="rounded-lg px-6 py-2 text-base">Cancel</Button>
+            </Link>
+            <Button type="submit" disabled={saving} className="flex items-center space-x-2 py-3 text-lg font-semibold rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-md transition-all duration-200">
+              {saving ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                  <span>Publishing...</span>
+                </>
+              ) : (
+                <>
+                  <Save className="w-4 h-4" />
+                  <span>Publish Post</span>
+                </>
+              )}
+            </Button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
