@@ -62,8 +62,8 @@ export default function DashboardPage() {
             </div>
             <div className="flex items-center space-x-4">
               {isPremiumUser && (
-                <Badge className="bg-gradient-to-r from-cyan-300 to-cyan-400 text-cyan-900 shadow-md">
-                  <Crown className="w-4 h-4 mr-1" />
+                <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 shadow-md">
+                  <Crown className="w-4 h-4 mr-1 text-yellow-700" />
                   Premium Member
                 </Badge>
               )}
@@ -181,19 +181,19 @@ export default function DashboardPage() {
 
         {/* Premium Message for Premium Users */}
         {isPremiumUser && (
-          <Card className="bg-gradient-to-r from-cyan-100 to-cyan-200 border-cyan-300 shadow-xl rounded-2xl backdrop-blur-md border-0 transition-all duration-300 hover:shadow-2xl">
+          <Card className="bg-gradient-to-r from-yellow-100 to-yellow-200 border-yellow-300 shadow-xl rounded-2xl backdrop-blur-md border-0 transition-all duration-300 hover:shadow-2xl">
             <CardHeader>
-              <CardTitle className="flex items-center space-x-2 text-cyan-800">
-                <Crown className="w-5 h-5" />
+              <CardTitle className="flex items-center space-x-2 text-yellow-800">
+                <Crown className="w-5 h-5 text-yellow-700" />
                 <span>Premium Member</span>
               </CardTitle>
-              <CardDescription className="text-cyan-700">
+              <CardDescription className="text-yellow-700">
                 You have full access to all premium features and content.
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Badge className="bg-gradient-to-r from-cyan-300 to-cyan-400 text-cyan-900 shadow-md">
-                <Crown className="w-4 h-4 mr-1" />
+              <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 shadow-md">
+                <Crown className="w-4 h-4 mr-1 text-yellow-700" />
                 Premium Active
               </Badge>
             </CardContent>

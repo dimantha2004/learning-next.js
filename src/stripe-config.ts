@@ -15,7 +15,7 @@ export const stripeProducts: StripeProduct[] = [
     name: 'Blog Premium',
     description: 'Access to premium blog content and features',
     mode: 'subscription',
-    price: 100, // $1.00 in cents
+    price: 100, 
     currency: 'usd'
   }
 ];
