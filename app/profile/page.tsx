@@ -86,6 +86,7 @@ export default function ProfilePage() {
 
   const isPremium = (user as any)?.is_premium;
   const hasActiveSubscription = user.subscription?.status === 'active';
+  const isPremiumUser = isPremium || hasActiveSubscription;
 
   const formatCurrency = (amount: number, currency: string) => {
     return new Intl.NumberFormat('en-US', {
@@ -151,11 +152,19 @@ export default function ProfilePage() {
                   </div>
                   {/* Premium status display and manual upgrade button */}
                   <div className="pt-4">
-                    {isPremium ? (
+                    {isPremiumUser ? (
                       <Badge className="bg-gradient-to-r from-cyan-300 to-cyan-400 text-cyan-900 shadow-md">
                         <Crown className="w-4 h-4 mr-1" />
                         Premium Member
                       </Badge>
+                    ) : hasActiveSubscription ? (
+                      <Button
+                        onClick={handleBecomePremium}
+                        className="bg-gradient-to-r from-cyan-300 to-cyan-400 text-cyan-900 shadow-md"
+                      >
+                        <Crown className="w-4 h-4 mr-2" />
+                        Become Premium User
+                      </Button>
                     ) : null}
                   </div>
                 </CardContent>
@@ -173,7 +182,7 @@ export default function ProfilePage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {isPremium && orders.length > 0 && (
+                  {isPremiumUser && orders.length > 0 && (
                     <div className="flex items-center mb-4">
                       <Badge className="bg-gradient-to-r from-cyan-300 to-cyan-400 text-cyan-900 shadow-md">
                         <Crown className="w-4 h-4 mr-1" />
@@ -239,7 +248,7 @@ export default function ProfilePage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  {isPremium ? (
+                  {isPremiumUser ? (
                     <div className="space-y-4">
                       <div className="flex items-center space-x-2">
                         <Badge className="bg-gradient-to-r from-cyan-300 to-cyan-400 text-cyan-900 shadow-md">

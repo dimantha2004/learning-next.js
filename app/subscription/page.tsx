@@ -22,6 +22,7 @@ export default function SubscriptionPage() {
 
   const isPremium = (user as any)?.is_premium;
   const hasActiveSubscription = user?.subscription?.status === 'active';
+  const isPremiumUser = isPremium || hasActiveSubscription;
   const blogProduct = stripeProducts.find(p => p.id === 'prod_Sgm9j9rJ9z2pS1');
 
   const handleSubscribe = () => {
@@ -63,7 +64,7 @@ export default function SubscriptionPage() {
                     <div>
                       <h3 className="font-semibold text-blue-900">Current Plan</h3>
                       <p className="text-blue-700">
-                        {hasActiveSubscription || isPremium ? user.subscription?.product_name || 'Premium Member' : 'Free Member'}
+                        {isPremiumUser ? user.subscription?.product_name || 'Premium Member' : 'Free Member'}
                       </p>
                       {user.subscription?.current_period_end && (
                         <p className="text-sm text-blue-600">
@@ -73,7 +74,7 @@ export default function SubscriptionPage() {
                       )}
                     </div>
                   </div>
-                  {hasActiveSubscription && (
+                  {isPremiumUser && (
                     <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900">
                       <Crown className="w-3 h-3 mr-1" />
                       Premium Active
@@ -87,8 +88,8 @@ export default function SubscriptionPage() {
           {/* Pricing Plans */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             {/* Free Plan */}
-            <Card className={`relative ${!isPremium ? 'border-2 border-blue-500' : ''}`}>
-              {!isPremium && (
+            <Card className={`relative ${!isPremiumUser ? 'border-2 border-blue-500' : ''}`}>
+              {!isPremiumUser && (
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
                   <Badge className="bg-blue-600 text-white">Current Plan</Badge>
                 </div>
@@ -121,16 +122,16 @@ export default function SubscriptionPage() {
                   </li>
                 </ul>
                 <Button variant="outline" className="w-full" disabled>
-                  {isPremium ? 'Not Active' : 'Current Plan'}
+                  {isPremiumUser ? 'Not Active' : 'Current Plan'}
                 </Button>
               </CardContent>
             </Card>
 
             {/* Premium Plan */}
-            <Card className={`relative ${isPremium ? 'border-2 border-yellow-500' : 'border-2 border-blue-500'}`}>
+            <Card className={`relative ${isPremiumUser ? 'border-2 border-yellow-500' : 'border-2 border-blue-500'}`}>
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
                 <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900">
-                  {isPremium ? 'Current Plan' : 'Most Popular'}
+                  {isPremiumUser ? 'Current Plan' : 'Most Popular'}
                 </Badge>
               </div>
               <CardHeader className="text-center pb-4">
@@ -147,7 +148,7 @@ export default function SubscriptionPage() {
                 </div>
               </CardHeader>
               <CardContent>
-                {isPremium ? (
+                {isPremiumUser ? (
                   <Button variant="outline" className="w-full" disabled>
                     Current Plan
                   </Button>

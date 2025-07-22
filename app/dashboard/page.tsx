@@ -43,6 +43,8 @@ export default function DashboardPage() {
   const premiumPosts = userPosts.filter(post => post.visibility === 'premium').length;
   const freePosts = userPosts.filter(post => post.visibility === 'free').length;
   const isPremium = (user as any)?.is_premium;
+  const hasActiveSubscription = user.subscription?.status === 'active';
+  const isPremiumUser = isPremium || hasActiveSubscription;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#61dbf2]/20 via-white to-[#61dbf2]/40">
@@ -59,7 +61,7 @@ export default function DashboardPage() {
               <p className="text-gray-600 text-lg">Manage your posts and track your writing progress</p>
             </div>
             <div className="flex items-center space-x-4">
-              {isPremium && (
+              {isPremiumUser && (
                 <Badge className="bg-gradient-to-r from-cyan-300 to-cyan-400 text-cyan-900 shadow-md">
                   <Crown className="w-4 h-4 mr-1" />
                   Premium Member
@@ -123,10 +125,10 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {isPremium ? 'Premium' : 'Free'}
+                {isPremiumUser ? 'Premium' : 'Free'}
               </div>
               <p className="text-xs text-muted-foreground">
-                {isPremium ? 'Full access' : 'Limited features'}
+                {isPremiumUser ? 'Full access' : 'Limited features'}
               </p>
             </CardContent>
           </Card>
@@ -178,7 +180,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Premium Message for Premium Users */}
-        {isPremium && (
+        {isPremiumUser && (
           <Card className="bg-gradient-to-r from-cyan-100 to-cyan-200 border-cyan-300 shadow-xl rounded-2xl backdrop-blur-md border-0 transition-all duration-300 hover:shadow-2xl">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2 text-cyan-800">
