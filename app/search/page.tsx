@@ -87,9 +87,9 @@ export default function SearchPage() {
                 variant={filter === 'premium' ? 'default' : 'outline'}
                 onClick={() => setFilter('premium')}
                 size="sm"
-                className="flex items-center space-x-1"
+                className="flex items-center space-x-1 bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 border-yellow-500 hover:from-yellow-500 hover:to-yellow-600"
               >
-                <Crown className="w-4 h-4" />
+                <Crown className="w-4 h-4 text-yellow-700" />
                 <span>Premium</span>
               </Button>
             </div>
@@ -154,7 +154,7 @@ export default function SearchPage() {
                 className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-yellow-900"
               >
                 <a href="/subscription">
-                  <Crown className="w-4 h-4 mr-2" />
+                  <Crown className="w-4 h-4 mr-2 text-yellow-700" />
                   Upgrade to Premium
                 </a>
               </Button>

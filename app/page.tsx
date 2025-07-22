@@ -63,8 +63,8 @@ export default function Home() {
                 </Button>
               </Link>
               <Link href="/subscription">
-                <Button size="lg" variant="outline" className="flex items-center space-x-2 rounded-xl border-[#61dbf2] text-[#61dbf2] hover:bg-cyan-50 shadow-md transition-all duration-200">
-                  <Crown className="w-5 h-5" />
+                <Button size="lg" variant="outline" className="flex items-center space-x-2 rounded-xl bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 border-yellow-500 hover:from-yellow-500 hover:to-yellow-600 shadow-lg transition-all duration-200">
+                  <Crown className="w-5 h-5 text-yellow-700" />
                   <span>Go Premium</span>
                 </Button>
               </Link>
@@ -72,8 +72,8 @@ export default function Home() {
           )}
           {user && isPremium && (
             <div className="flex items-center justify-center mt-4 animate-fade-in">
-              <Badge className="bg-gradient-to-r from-cyan-300 to-cyan-400 text-cyan-900 shadow-md">
-                <Crown className="w-4 h-4 mr-1" />
+              <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 shadow-md">
+                <Crown className="w-4 h-4 mr-1 text-yellow-700" />
                 Premium Member
               </Badge>
             </div>
@@ -114,9 +114,9 @@ export default function Home() {
                 variant={filter === 'premium' ? 'default' : 'outline'}
                 onClick={() => setFilter('premium')}
                 size="sm"
-                className="flex items-center space-x-1"
+                className="flex items-center space-x-1 bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 border-yellow-500 hover:from-yellow-500 hover:to-yellow-600"
               >
-                <Crown className="w-4 h-4" />
+                <Crown className="w-4 h-4 text-yellow-700" />
                 <span>Premium</span>
               </Button>
             </div>

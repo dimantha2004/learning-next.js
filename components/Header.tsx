@@ -61,7 +61,7 @@ export default function Header() {
                       <span className="hidden sm:inline">{user.user_metadata?.full_name || user.email}</span>
                       {hasActiveSubscription && (
                         <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 ml-2">
-                          <Crown className="w-3 h-3 mr-1" />
+                          <Crown className="w-3 h-3 mr-1 text-yellow-700" />
                           Premium
                         </Badge>
                       )}

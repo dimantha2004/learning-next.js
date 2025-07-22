@@ -153,16 +153,16 @@ export default function ProfilePage() {
                   {/* Premium status display and manual upgrade button */}
                   <div className="pt-4">
                     {isPremiumUser ? (
-                      <Badge className="bg-gradient-to-r from-cyan-300 to-cyan-400 text-cyan-900 shadow-md">
-                        <Crown className="w-4 h-4 mr-1" />
+                      <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 shadow-md">
+                        <Crown className="w-4 h-4 mr-1 text-yellow-700" />
                         Premium Member
                       </Badge>
                     ) : hasActiveSubscription ? (
                       <Button
                         onClick={handleBecomePremium}
-                        className="bg-gradient-to-r from-cyan-300 to-cyan-400 text-cyan-900 shadow-md"
+                        className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 shadow-md"
                       >
-                        <Crown className="w-4 h-4 mr-2" />
+                        <Crown className="w-4 h-4 mr-2 text-yellow-700" />
                         Become Premium User
                       </Button>
                     ) : null}
@@ -184,8 +184,8 @@ export default function ProfilePage() {
                 <CardContent>
                   {isPremiumUser && orders.length > 0 && (
                     <div className="flex items-center mb-4">
-                      <Badge className="bg-gradient-to-r from-cyan-300 to-cyan-400 text-cyan-900 shadow-md">
-                        <Crown className="w-4 h-4 mr-1" />
+                      <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 shadow-md">
+                        <Crown className="w-4 h-4 mr-1 text-yellow-700" />
                         Premium Member
                       </Badge>
                     </div>
@@ -251,8 +251,8 @@ export default function ProfilePage() {
                   {isPremiumUser ? (
                     <div className="space-y-4">
                       <div className="flex items-center space-x-2">
-                        <Badge className="bg-gradient-to-r from-cyan-300 to-cyan-400 text-cyan-900 shadow-md">
-                          <Crown className="w-3 h-3 mr-1" />
+                        <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 shadow-md">
+                          <Crown className="w-3 h-3 mr-1 text-yellow-700" />
                           Premium Active
                         </Badge>
                       </div>

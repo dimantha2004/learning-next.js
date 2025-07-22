@@ -95,7 +95,7 @@ export default function PostViewClient({ post }: PostViewClientProps) {
                   <div className="flex items-center justify-between">
                     {isPremiumPost && (
                       <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900">
-                        <Crown className="w-3 h-3 mr-1" />
+                        <Crown className="w-3 h-3 mr-1 text-yellow-700" />
                         Premium
                       </Badge>
                     )}
@@ -122,7 +122,7 @@ export default function PostViewClient({ post }: PostViewClientProps) {
                   <div className="flex items-center space-x-2">
                     {isPremiumPost && (
                       <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900">
-                        <Crown className="w-3 h-3 mr-1" />
+                        <Crown className="w-3 h-3 mr-1 text-yellow-700" />
                         Premium
                       </Badge>
                     )}

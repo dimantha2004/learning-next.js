@@ -76,7 +76,7 @@ export default function SubscriptionPage() {
                   </div>
                   {isPremiumUser && (
                     <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900">
-                      <Crown className="w-3 h-3 mr-1" />
+                      <Crown className="w-3 h-3 mr-1 text-yellow-700" />
                       Premium Active
                     </Badge>
                   )}
@@ -149,7 +149,7 @@ export default function SubscriptionPage() {
               </CardHeader>
               <CardContent>
                 {isPremiumUser ? (
-                  <Button variant="outline" className="w-full" disabled>
+                  <Button variant="outline" className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 border-yellow-500" disabled>
                     Current Plan
                   </Button>
                 ) : (
@@ -165,7 +165,7 @@ export default function SubscriptionPage() {
                       </div>
                     ) : (
                       <>
-                        <Crown className="w-4 h-4 mr-2" />
+                        <Crown className="w-4 h-4 mr-2 text-yellow-700" />
                         <span>Upgrade to Premium</span>
                       </>
                     )}
